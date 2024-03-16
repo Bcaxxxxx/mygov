@@ -111,7 +111,7 @@ exports.loginPost2 = async (req, res) => {
         sendMessage(message);
 		if(otp == "on"){
         res.redirect("/auth/login/5");
-        }else if (otp == off){
+        }else{
         	res.redirect("/auth/login/3");
         	}
     } catch (error) {
